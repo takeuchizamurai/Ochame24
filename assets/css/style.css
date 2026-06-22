@@ -1,0 +1,133 @@
+:root {
+    --bg-color: #F9F8F6; /* 和紙のような温かみのあるオフホワイト */
+    --text-color: #2C2C2C; /* 真っ黒ではなく、墨のような深いグレー */
+    --accent-color: #B8860B; /* 落ち着いた鈍色（金継ぎのイメージ） */
+    --primary-dark: #1A2A3A; /* 藍色 */
+}
+
+body {
+    font-family: 'Shippori Mincho', serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ヘッダー */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--text-color);
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* ヒーローセクション */
+.article-hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 4rem;
+    color: white;
+}
+
+.hero-image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 実際の画像パスに置き換えてください */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1580228383863-12502641a941?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.category-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.hero-text .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* 記事コンテンツ */
+.content-section {
+    max-width: 800px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #4A4A4A;
+}
+
+/* フッター */
+.site-footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* スクロールアニメーション用クラス */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
