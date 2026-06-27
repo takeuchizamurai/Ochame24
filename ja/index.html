@@ -1,49 +1,277 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>堺包丁 - 日本の美と実用 | Japan Crafts</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan Crafts — 日本の伝統工芸を、世界へ</title>
+  <meta name="description" content="職人の技と美意識が宿る、日本の伝統工芸を紹介するメディアサイト。包丁、漆器、陶芸など日本のものづくりの深みへ。">
+  <link rel="alternate" hreflang="ja" href="/ja/">
+  <link rel="alternate" hreflang="en" href="/en/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* トップページ専用スタイル */
+    .top-hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(249,248,246,0) 60%, rgba(249,248,246,1) 100%),
+        url('../assets/images/image1.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.18;
+      z-index: 0;
+    }
+
+    .top-hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-site-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      display: block;
+      margin-bottom: 2rem;
+    }
+
+    .top-hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin: 0 0 2rem 0;
+      color: var(--text-color);
+    }
+
+    .top-hero p {
+      font-size: 1.1rem;
+      color: #6A6A6A;
+      max-width: 480px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .scroll-hint {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: #AAAAAA;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, #AAAAAA, transparent);
+    }
+
+    /* 記事グリッド */
+    .articles-section {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin: 0 0 3rem 0;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 3rem;
+    }
+
+    .article-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      group: true;
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      position: relative;
+      background-color: var(--primary-dark);
+    }
+
+    .card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .card-image-inner {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .article-card:hover .card-image-inner {
+      transform: scale(1.04);
+    }
+
+    .card-image--knife .card-image-inner {
+      background: linear-gradient(160deg, rgba(26,42,58,0.6) 0%, rgba(0,0,0,0.3) 100%),
+                  url('../assets/images/image1.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-image--urushi .card-image-inner {
+      background: linear-gradient(160deg, rgba(100,20,20,0.6) 0%, rgba(40,20,10,0.4) 100%),
+                  url('../assets/images/image1.png');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    .card-body {
+      padding: 1.6rem 0 0;
+    }
+
+    .card-body .category-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--accent-color);
+      display: block;
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    .card-body h3 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin: 0 0 0.7rem 0;
+      color: var(--text-color);
+      transition: color 0.3s;
+    }
+
+    .article-card:hover .card-body h3 {
+      color: var(--accent-color);
+    }
+
+    .card-body p {
+      font-size: 0.95rem;
+      color: #777;
+      margin: 0 0 1.2rem 0;
+      line-height: 1.7;
+    }
+
+    .read-more {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--text-color);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .article-card:hover .read-more {
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    /* ヘッダーをトップページ用に調整 */
+    .site-header .logo {
+      color: var(--text-color);
+    }
+
+    @media (max-width: 640px) {
+      .articles-section {
+        padding: 4rem 1.5rem;
+      }
+      .articles-grid {
+        gap: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="site-header fade-in">
-        <div class="logo">Japan Crafts</div>
-        <nav>
-            <button id="lang-toggle" class="lang-btn">English</button>
-        </nav>
-    </header>
+  <header class="site-header fade-in">
+    <div class="logo">Japan Crafts</div>
+    <nav>
+      <button id="lang-toggle" class="lang-btn">English</button>
+    </nav>
+  </header>
 
-    <main>
-        <article class="product-article">
-            <header class="article-hero fade-in">
-                <div class="hero-image-placeholder"></div>
-                <div class="hero-text">
-                    <span class="category-label">刃物 - Cutlery</span>
-                    <h1>堺包丁</h1>
-                    <p class="subtitle">数百年受け継がれる、究極の切れ味と美学</p>
-                </div>
-            </header>
+  <main>
+    <section class="top-hero">
+      <div class="top-hero-inner fade-in">
+        <span class="top-site-label">Japan Crafts</span>
+        <h1>日本の伝統工芸を、<br>世界へ。</h1>
+        <p>職人の技と美意識が宿る、<br>日本のものづくりの深みへようこそ。</p>
+        <div class="scroll-hint">Scroll</div>
+      </div>
+    </section>
 
-            <section class="content-section fade-in">
-                <h2>職人の魂が宿る刃</h2>
-                <p>世界中のトップシェフから愛される堺包丁。その歴史は古く、緻密な鍛造技術と研ぎのプロセスを経て生み出されます。一本一本が職人の手作業によって作られ、その切れ味は食材の細胞を潰さず、本来の旨味を引き出します。</p>
-            </section>
+    <section class="articles-section">
+      <h2 class="section-heading fade-in">Articles — 記事一覧</h2>
+      <div class="articles-grid">
 
-            <section class="content-section fade-in">
-                <h2>美しさと機能性の融合</h2>
-                <p>波打つような刃紋や、手に吸い付くような柄の質感。日々の料理という営みを、特別な儀式へと昇華させる力を持っています。一生モノの道具として、手入れをしながら共に時を重ねる喜びがそこにあります。</p>
-            </section>
-        </article>
-    </main>
+        <a href="categories/knife.html" class="article-card fade-in">
+          <div class="card-image card-image--knife">
+            <div class="card-image-inner"></div>
+          </div>
+          <div class="card-body">
+            <span class="category-label">刃物 - Cutlery</span>
+            <h3>堺包丁</h3>
+            <p>数百年受け継がれる、究極の切れ味と美学。世界のトップシェフが信頼する日本の刃。</p>
+            <span class="read-more">読む →</span>
+          </div>
+        </a>
 
-    <footer class="site-footer fade-in">
-        <p>&copy; 2026 Kaichi Takeuchi. All rights reserved.</p>
-    </footer>
+        <a href="categories/urushi-lacquer.html" class="article-card fade-in">
+          <div class="card-image card-image--urushi">
+            <div class="card-image-inner"></div>
+          </div>
+          <div class="card-body">
+            <span class="category-label">漆工 - Lacquerware</span>
+            <h3>日本の漆器</h3>
+            <p>縄文時代から続く9000年の技。使うほどに深まる艶と、職人が重ねた時間の物語。</p>
+            <span class="read-more">読む →</span>
+          </div>
+        </a>
 
-    <script src="../../assets/js/main.js"></script>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer fade-in">
+    <p>&copy; 2026 Kaichi Takeuchi. All rights reserved.</p>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>

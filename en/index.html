@@ -1,49 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakai Knives - Japanese Beauty & Utility | Japan Crafts</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan Crafts — Japanese Tradition, Shared with the World</title>
+  <meta name="description" content="A media site dedicated to Japanese traditional crafts — knives, lacquerware, ceramics, and the artisans who make them.">
+  <link rel="alternate" hreflang="en" href="/en/">
+  <link rel="alternate" hreflang="ja" href="/ja/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* Top page styles */
+    .top-hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(249,248,246,0) 60%, rgba(249,248,246,1) 100%),
+        url('../assets/images/image1.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.18;
+      z-index: 0;
+    }
+
+    .top-hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-site-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      display: block;
+      margin-bottom: 2rem;
+    }
+
+    .top-hero h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0 0 2rem 0;
+      color: var(--text-color);
+    }
+
+    .top-hero p {
+      font-size: 1.1rem;
+      color: #6A6A6A;
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .scroll-hint {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: #AAAAAA;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, #AAAAAA, transparent);
+    }
+
+    /* Article grid */
+    .articles-section {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin: 0 0 3rem 0;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 3rem;
+    }
+
+    .article-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      position: relative;
+      background-color: var(--primary-dark);
+    }
+
+    .card-image-inner {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .article-card:hover .card-image-inner {
+      transform: scale(1.04);
+    }
+
+    .card-image--knife .card-image-inner {
+      background: linear-gradient(160deg, rgba(26,42,58,0.6) 0%, rgba(0,0,0,0.3) 100%),
+                  url('../assets/images/image1.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-image--urushi .card-image-inner {
+      background: linear-gradient(160deg, rgba(100,20,20,0.6) 0%, rgba(40,20,10,0.4) 100%),
+                  url('../assets/images/image1.png');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    .card-body {
+      padding: 1.6rem 0 0;
+    }
+
+    .card-body .category-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--accent-color);
+      display: block;
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    .card-body h3 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin: 0 0 0.7rem 0;
+      color: var(--text-color);
+      transition: color 0.3s;
+    }
+
+    .article-card:hover .card-body h3 {
+      color: var(--accent-color);
+    }
+
+    .card-body p {
+      font-size: 0.95rem;
+      color: #777;
+      margin: 0 0 1.2rem 0;
+      line-height: 1.7;
+    }
+
+    .read-more {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--text-color);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .article-card:hover .read-more {
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    @media (max-width: 640px) {
+      .articles-section {
+        padding: 4rem 1.5rem;
+      }
+      .articles-grid {
+        gap: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="site-header fade-in">
-        <div class="logo">Japan Crafts</div>
-        <nav>
-            <button id="lang-toggle" class="lang-btn">日本語</button>
-        </nav>
-    </header>
+  <header class="site-header fade-in">
+    <div class="logo">Japan Crafts</div>
+    <nav>
+      <button id="lang-toggle" class="lang-btn">日本語</button>
+    </nav>
+  </header>
 
-    <main>
-        <article class="product-article">
-            <header class="article-hero fade-in">
-                <div class="hero-image-placeholder"></div>
-                <div class="hero-text">
-                    <span class="category-label">Cutlery</span>
-                    <h1>Sakai Knives</h1>
-                    <p class="subtitle">The Ultimate Sharpness and Aesthetics Handed Down for Centuries</p>
-                </div>
-            </header>
+  <main>
+    <section class="top-hero">
+      <div class="top-hero-inner fade-in">
+        <span class="top-site-label">Japan Crafts</span>
+        <h1>Japanese Tradition,<br>Shared with the World.</h1>
+        <p>Exploring the skill, beauty, and soul embedded<br>in Japan's finest handcrafted objects.</p>
+        <div class="scroll-hint">Scroll</div>
+      </div>
+    </section>
 
-            <section class="content-section fade-in">
-                <h2>Blades Imbued with the Artisan's Soul</h2>
-                <p>Loved by top chefs worldwide, Sakai knives carry a rich, ancient history. They are brought to life through a meticulous process of forging and sharpening. Crafted individually by hand, their masterful sharpness slices through ingredients without crushing their cells, bringing out their true, natural flavors.</p>
-            </section>
+    <section class="articles-section">
+      <h2 class="section-heading fade-in">Articles</h2>
+      <div class="articles-grid">
 
-            <section class="content-section fade-in">
-                <h2>The Fusion of Beauty and Function</h2>
-                <p>From the flowing, wave-like hamon patterns to the textured handles that sit perfectly in your hand, these knives possess the power to elevate daily cooking into a sacred ritual. As a tool meant to last a lifetime, there is a profound joy in caring for them and watching them age gracefully alongside you through the years.</p>
-            </section>
-        </article>
-    </main>
+        <a href="categories/knife.html" class="article-card fade-in">
+          <div class="card-image card-image--knife">
+            <div class="card-image-inner"></div>
+          </div>
+          <div class="card-body">
+            <span class="category-label">Cutlery</span>
+            <h3>Sakai Knives</h3>
+            <p>Centuries of forging tradition, trusted by the world's top chefs. The ultimate expression of Japanese blade craft.</p>
+            <span class="read-more">Read →</span>
+          </div>
+        </a>
 
-    <footer class="site-footer fade-in">
-        <p>&copy; 2026 Kaichi Takeuchi. All rights reserved.</p>
-    </footer>
+        <a href="categories/urushi-lacquer.html" class="article-card fade-in">
+          <div class="card-image card-image--urushi">
+            <div class="card-image-inner"></div>
+          </div>
+          <div class="card-body">
+            <span class="category-label">Lacquerware</span>
+            <h3>Japanese Urushi Lacquerware</h3>
+            <p>Nine thousand years of craft, still alive today. A vessel that grows more beautiful the more you use it.</p>
+            <span class="read-more">Read →</span>
+          </div>
+        </a>
 
-    <script src="../../assets/js/main.js"></script>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer fade-in">
+    <p>&copy; 2026 Kaichi Takeuchi. All rights reserved.</p>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
