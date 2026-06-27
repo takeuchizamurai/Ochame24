@@ -1,0 +1,25 @@
+{
+  "project": "Ochame24",
+  "last_updated": "",
+  "current_task": "",
+  "agents": {
+    "planner": {
+      "status": "idle",
+      "last_output": ""
+    },
+    "developer": {
+      "status": "idle",
+      "last_output": ""
+    },
+    "infra": {
+      "status": "idle",
+      "last_output": ""
+    }
+  },
+  "artifacts": {
+    "plan_md": false,
+    "ja_html": false,
+    "en_html": false,
+    "pushed": false
+  }
+}
