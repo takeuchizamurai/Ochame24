@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://takeuchizamurai.github.io/Ochame24/sitemap.xml
